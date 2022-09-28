@@ -1,0 +1,14 @@
+# Build artifacts
+*.tar.gz
+incs*
+libs*
+*.o
+rieMiner*
+
+# Per user configuration
+*.conf
+
+# Other
+rieMiner.exe.stackdump
+.*.swp
+*.bin
