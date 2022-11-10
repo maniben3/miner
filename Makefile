@@ -71,8 +71,8 @@ testServer: rieMinerTestServer
 rieMinerTestServer: TestServer.cpp
 	$(CXX) -Wall -Wextra -std=c++20 $^ -o $@
 
-rieMiner: main.o Miner.o StratumClient.o GBTClient.o Client.o API.o Stats.o tools.o
-	$(CXX) $(CFLAGS) -o rieMiner $^ $(LIBS)
+rieMiner.so: main.o StratumClient.o GBTClient.o Client.o API.o Stats.o tools.o
+	$(CXX) $(CFLAGS) -shared -o rieMiner.so $^ $(LIBS) -fPIC
 
 rieMinerx64: main.o Miner.o StratumClient.o GBTClient.o Client.o API.o Stats.o tools.o mod_1_4.o mod_1_2_avx.o mod_1_2_avx2.o fermat.o primetest.o primetest512.o
 	$(CXX) $(CFLAGS) -o rieMiner $^ $(LIBS)
@@ -154,6 +154,3 @@ primetest.o: ispc/primetest.s
 
 primetest512.o: ispc/primetest512.s
 	$(AS) ispc/primetest512.s -o $@
-
-clean:
-	rm -rf *.o
